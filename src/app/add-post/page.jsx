@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { SignInButton } from "@clerk/nextjs";
-import { connect } from "@/utils/db";
+import { connect } from "@/utilities/db";
 
 export default async function addPost() {
   const { userId } = await auth();
