@@ -3,9 +3,8 @@ import { SignInButton } from "@clerk/nextjs";
 import { connect } from "@/utils/db";
 
 export default async function addPost() {
-  const { userId } = auth();
-  console.log("*********", userId) //********* undefined
-  const db = connect();
+  const { userId } = await auth();
+
   async function savePost(formData) {
     "use server";
     const content = formData.get("content");
@@ -14,6 +13,7 @@ export default async function addPost() {
       throw new Error("You need to login");
     }
 
+    const db = connect();
     await db.query(
       "INSERT INTO posts (title, body, clerk_id) VALUES ($1, $2, $3)",
       [title, content, userId]
@@ -23,15 +23,13 @@ export default async function addPost() {
     redirect("/");
   }
 
-//   if (!userId) {
-//     return (
-//       <div className="max-w-screen-lg mx-auto p-4 mt-10">
-//         You need to login to create a post <SignInButton />
-//       </div>
-//     );
-//   }
-
-// will add this back in when we have resolved issue with adding clerk_id in to the database.
+  if (!userId) {
+    return (
+      <div className="max-w-screen-lg mx-auto p-4 mt-10">
+        You need to login to create a post <SignInButton />
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-screen-lg mx-auto p-4 bg-zinc-800 mt-10 rounded-xl">
