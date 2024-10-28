@@ -4,7 +4,8 @@ import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 export default async function ProfilePage() {
   //check user with clerk
-  const { userId } = auth();
+  const { userId } = await auth();
+  console.log("************", userId)
 
   const db = connect();
 
@@ -23,6 +24,8 @@ export default async function ProfilePage() {
       profile = result.rows[0];
     }
   }
+
+  console.log("************", profile)
 
   const posts = profile
     ? await db.query(`SELECT * FROM posts WHERE clerk_id = $1`, [

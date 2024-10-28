@@ -14,15 +14,13 @@ export const metadata = {
 //maximum call stack size exceeded at resolveErrorDev to be fixed
 export default async function UpdateProfilePage() {
   // Get user with Clerk
-  const user = await auth();
+  const { userId } = await auth();
 
   // Log the full auth object for debugging
-  console.log("Auth object:", user);
-
-  const { userId } = user;
-  const db = connect();
+  //console.log("Auth object:", user);
 
   // Get user profile from db
+  const db = connect();
   const profile = await db.query(
     `SELECT * FROM clerk_users WHERE clerk_id = $1`,
     [userId]
@@ -42,6 +40,7 @@ export default async function UpdateProfilePage() {
       return;
     }
 
+    const db = connect();
     try {
       const profiles = await db.query(
         `SELECT * FROM clerk_users WHERE clerk_id = $1`,
