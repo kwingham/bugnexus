@@ -1,4 +1,4 @@
-import { connect } from "@/app/lib/connect";
+import { connect } from "@/utilities/db";
 import { auth } from "@clerk/nextjs/server";
 
 
