@@ -1,64 +1,72 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { connect } from "@/utilities/db";
 
 export const metadata = {
   title: "BugNexus | Update Profile",
   description:
-    "BugNexus - the place for beginners to ask for help with there code",
+    "BugNexus - the place for beginners to ask for help with their code",
   icons: {
     icon: "/favicon.ico",
   },
 };
-
+//maximum call stack size exceeded at resolveErrorDev to be fixed
 export default async function UpdateProfilePage() {
-  //check user with clerk
-  const { userId } = auth();
+  // Get user with Clerk
+  const user = await auth();
 
+  // Log the full auth object for debugging
+  console.log("Auth object:", user);
+
+  const { userId } = user;
   const db = connect();
 
-  //get user profile from db
+  // Get user profile from db
   const profile = await db.query(
     `SELECT * FROM clerk_users WHERE clerk_id = $1`,
     [userId]
   );
 
-  //check to see if user has a profile
+  // Check to see if user has a profile
   const existingProfile = profile.rows[0] || {};
 
-  //function to update/create profile
   async function handleUpdateProfile(formData) {
     "use server";
 
-    const username = formData.get("username");
-    const bio = formData.get("bio");
+    const username = formData.get("username")?.trim();
+    const bio = formData.get("bio")?.trim();
+
+    if (!username) {
+      console.error("Username is required.");
+      return;
+    }
 
     try {
       const profiles = await db.query(
         `SELECT * FROM clerk_users WHERE clerk_id = $1`,
         [userId]
       );
+
       if (profiles.rowCount === 0) {
-        //if no profile add one
+        // If no profile, add one
         await db.query(
           `INSERT INTO clerk_users (clerk_id, username, bio) VALUES ($1, $2, $3)`,
           [userId, username, bio]
         );
       } else {
-        //if has a profile update it
+        // If a profile exists, update it
         await db.query(
-          `UPDATE clerk_users SET username=$1, bio=$2 WHERE clerk_id=$3`,
+          `UPDATE clerk_users SET username = $1, bio = $2 WHERE clerk_id = $3`,
           [username, bio, userId]
         );
       }
 
-      // console.log("redirecting");
+      // Revalidate the profile page and redirect after updating the profile
       revalidatePath(`/profile`);
       redirect(`/profile`);
     } catch (error) {
-      console.error(error);
+      console.error("Error updating profile:", error);
     }
   }
 
@@ -83,15 +91,9 @@ export default async function UpdateProfilePage() {
                 type="text"
                 name="username"
                 placeholder="Enter a Username"
-                defaultValue={existingProfile.username}
+                defaultValue={existingProfile.username || ""}
                 required
               />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-xl mb-2" htmlFor="email">
-                <span className="title">Email</span>
-              </label>
             </div>
 
             <div className="mb-4">
@@ -102,7 +104,7 @@ export default async function UpdateProfilePage() {
                 className="w-full border p-2 rounded text-black placeholder-gray-500"
                 name="bio"
                 placeholder="Enter a Biography"
-                defaultValue={existingProfile.bio}
+                defaultValue={existingProfile.bio || ""}
               />
             </div>
 
