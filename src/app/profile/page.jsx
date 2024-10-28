@@ -1,10 +1,12 @@
-import { db } from "@/utilities/db";
+import { connect } from "@/utilities/db";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 export default async function ProfilePage() {
   //check user with clerk
   const { userId } = auth();
+
+  const db = connect();
 
   let profile = null;
 

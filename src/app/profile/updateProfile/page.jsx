@@ -2,7 +2,8 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { db } from "@/utilities/db";
+import { connect } from "@/utilities/db";
+
 export const metadata = {
   title: "BugNexus | Update Profile",
   description:
@@ -15,6 +16,8 @@ export const metadata = {
 export default async function UpdateProfilePage() {
   //check user with clerk
   const { userId } = auth();
+
+  const db = connect();
 
   //get user profile from db
   const profile = await db.query(

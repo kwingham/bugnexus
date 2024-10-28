@@ -1,4 +1,11 @@
 import pg from "pg";
-export const db = new pg.Pool({
-  connectionString: process.env.DB_URL,
-});
+
+let db;
+
+export const connect = () => {
+  if (!db) {
+    db = new pg.Pool({ connectionString: process.env.DB_URL });
+    return db;
+  }
+  return db;
+};

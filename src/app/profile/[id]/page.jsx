@@ -1,7 +1,9 @@
-import { db } from "@/utilities/db";
+import { connect } from "@/utilities/db";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
+  const db = connect();
+
   const user = (
     await db.query("SELECT * FROM clerk_users WHERE id = $1", [params.id])
   ).rows[0];
