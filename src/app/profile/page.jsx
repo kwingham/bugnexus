@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function ProfilePage() {
   //check user with clerk
   const { userId } = await auth();
-  console.log("************", userId)
+  console.log("************", userId);
 
   const db = connect();
 
@@ -25,7 +25,7 @@ export default async function ProfilePage() {
     }
   }
 
-  console.log("************", profile)
+  console.log("************", profile);
 
   const posts = profile
     ? await db.query(`SELECT * FROM posts WHERE clerk_id = $1`, [
@@ -51,7 +51,9 @@ export default async function ProfilePage() {
                 linkText="Update Profile"
                 tooltipText="Click here to update your profile"
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-              />
+              >
+                Update Profile
+              </Link>
 
               <div className="mt-4">
                 <p className="text-xl mb-2">
