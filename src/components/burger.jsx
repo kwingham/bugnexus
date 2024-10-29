@@ -46,6 +46,11 @@ export default function BurgerMenu() {
                 Posts
               </NavigationMenuLink>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="/add-post" className="hover:underline">
+                Add Post
+              </NavigationMenuLink>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       )}
