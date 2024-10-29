@@ -7,7 +7,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import BurgerMenu from "@/components/burger";
+import Header from "@/components/header";
 
 // Define the local fonts
 const geistSans = localFont({
@@ -34,13 +34,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <BurgerMenu />
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          <Header />
           {children}
         </body>
       </html>
