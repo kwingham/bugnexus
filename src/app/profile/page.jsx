@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function ProfilePage() {
   //check user with clerk
   const { userId } = await auth();
-  console.log("************", userId);
+  // console.log("************", userId);
 
   const db = connect();
 
@@ -25,7 +25,7 @@ export default async function ProfilePage() {
     }
   }
 
-  console.log("************", profile);
+  // console.log("************", profile);
 
   const posts = profile
     ? await db.query(`SELECT * FROM posts WHERE clerk_id = $1`, [
@@ -95,7 +95,8 @@ export default async function ProfilePage() {
           ) : (
             posts.rows.map((post) => (
               <div key={post.id} className="border p-4 mb-4 rounded">
-                <p className="text-xl">{post.content}</p>
+                <h1 className="text-xl">{post.title}</h1>
+                <p className="text-l">{post.body}</p>
               </div>
             ))
           )}
