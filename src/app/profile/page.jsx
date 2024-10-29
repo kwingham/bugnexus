@@ -48,8 +48,6 @@ export default async function ProfilePage() {
             <div className="border p-6 mb-6 rounded w-full">
               <Link
                 href="/profile/updateProfile"
-                linkText="Update Profile"
-                tooltipText="Click here to update your profile"
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
               >
                 Update Profile
