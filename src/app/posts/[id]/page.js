@@ -1,5 +1,6 @@
 
 import { connect } from "@/utilities/db";
+import CommentForm from "@/components/CommentForm";
 
 export default async function SingularPostPage({params}) {
     
@@ -11,10 +12,11 @@ export default async function SingularPostPage({params}) {
 
     return (
         <div>
-            {params.id}
-            <h1>Singular Post Page</h1>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
+            <div>
+            <CommentForm />
+            </div>
         </div>
     )
 }
