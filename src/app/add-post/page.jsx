@@ -1,6 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { SignInButton } from "@clerk/nextjs";
 import { connect } from "@/utilities/db";
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 export default async function addPost() {
   const { userId } = await auth();
@@ -19,8 +21,8 @@ export default async function addPost() {
       [title, content, userId]
     );
 
-    revalidatePath("/");
-    redirect("/");
+    revalidatePath("/posts");
+    redirect("/posts");
   }
 
   if (!userId) {
