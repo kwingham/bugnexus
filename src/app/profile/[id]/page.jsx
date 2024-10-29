@@ -59,17 +59,6 @@ export default async function ProfilePage({ params }) {
           <span className="title">Profile Information</span>
         </h3>
         <p className="text-xl mb-2">
-          <span className="title">Email: </span> {userProfile.email}
-        </p>
-        <p className="text-xl mb-2">
-          <span className="title">D.O.B: </span>
-          {userProfile.date_of_birth}
-        </p>
-        <p className="text-xl mb-2">
-          <span className="title">Phone Number: </span>
-          {userProfile.phone_number}
-        </p>
-        <p className="text-xl mb-2">
           <span className="title">Bio: </span>
           {userProfile.bio}
         </p>
@@ -84,7 +73,8 @@ export default async function ProfilePage({ params }) {
         ) : (
           posts.rows.map((post) => (
             <div key={post.id} className="border p-4 mb-4 rounded">
-              <p className="text-xl">{post.content}</p>
+              <h1 className="text-xl">{post.title}</h1>
+              <p className="text-l">{post.body}</p>
             </div>
           ))
         )}
