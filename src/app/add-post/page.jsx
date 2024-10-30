@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { SignInButton } from "@clerk/nextjs";
 import { connect } from "@/utilities/db";
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function addPost() {
   const { userId } = await auth();
@@ -34,22 +34,27 @@ export default async function addPost() {
   }
 
   return (
-    <div className="max-w-screen-lg mx-auto p-4 bg-zinc-800 mt-10 rounded-xl">
-      <h2 className="text-3xl mb-4">Add a new post</h2>
-      <form action={savePost} className="flex flex-col space-y-4">
+    <div className="max-w-screen-md mx-auto mt-16 p-8 bg-gray-900 text-white rounded-lg shadow-lg">
+      <h2 className="text-4xl font-bold text-green-400 mb-6 text-center">
+        Create a New Post
+      </h2>
+      <form action={savePost} className="flex flex-col space-y-6">
         <input
           type="text"
           name="title"
-          placeholder="Post title..."
-          className="text-black px-3 py-2 rounded"
+          placeholder="Enter post title..."
+          className="px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
         <textarea
           name="content"
-          className="text-black px-3 py-2 rounded"
-          placeholder="Post content"
+          placeholder="Write your content here..."
+          className="px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 h-40 resize-none"
         />
-        <button className="bg-green-400 px-4 py-2 text-xl text-black rounded">
-          Submit post
+        <button
+          type="submit"
+          className="w-full py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors"
+        >
+          Submit Post
         </button>
       </form>
     </div>

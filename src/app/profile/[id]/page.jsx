@@ -49,32 +49,37 @@ export default async function ProfilePage({ params }) {
   }
 
   return (
-    <div className="flex flex-col justify-evenly items-center min-h-screen p-10">
-      <h2 className="text-4xl mb-10">
-        <span className="title">{userProfile.username}&apos;s Profile</span>
+    <div className="flex flex-col items-center min-h-screen bg-gray-900 text-white p-10">
+      <h2 className="text-5xl font-bold text-green-400 mb-12 text-center">
+        {userProfile.username}&apos;s Profile
       </h2>
 
-      <div className="w-full max-w-2xl border p-6 rounded mb-10">
-        <h3 className="text-2xl mb-5">
-          <span className="title">Profile Information</span>
+      <div className="w-full max-w-2xl bg-gray-800 border border-green-400 p-8 rounded-lg shadow-lg mb-12">
+        <h3 className="text-3xl font-semibold text-green-400 mb-6">
+          Profile Information
         </h3>
-        <p className="text-xl mb-2">
-          <span className="title">Bio: </span>
+        <p className="text-lg text-gray-300">
+          <span className="font-semibold text-white">Bio:</span>{" "}
           {userProfile.bio}
         </p>
       </div>
-
-      <div className="w-full max-w-2xl">
-        <h3 className="text-2xl mb-5">
-          <span className="title">Posts by {userProfile.username}</span>
+      
+      <div className="w-full max-w-2xl bg-gray-800 p-8 rounded-lg shadow-lg">
+        <h3 className="text-3xl font-semibold text-green-400 mb-6">
+          Posts by {userProfile.username}
         </h3>
         {posts.rows.length === 0 ? (
-          <p className="text-xl">No posts yet</p>
+          <p className="text-lg text-gray-300">No posts yet</p>
         ) : (
           posts.rows.map((post) => (
-            <div key={post.id} className="border p-4 mb-4 rounded">
-              <h1 className="text-xl">{post.title}</h1>
-              <p className="text-l">{post.body}</p>
+            <div
+              key={post.id}
+              className="bg-gray-700 border border-gray-600 p-6 mb-4 rounded-lg shadow"
+            >
+              <h1 className="text-2xl font-semibold text-green-400">
+                {post.title}
+              </h1>
+              <p className="text-gray-300 mt-2">{post.body}</p>
             </div>
           ))
         )}

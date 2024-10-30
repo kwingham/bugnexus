@@ -61,16 +61,13 @@ export default async function UpdateProfilePage() {
         );
       }
 
-      // Revalidate the profile page and redirect after updating the profile
-      revalidatePath(`/profile`);
-      redirect(`/profile`);
     } catch (error) {
       console.error("Error updating profile:", error);
     }
   }
 
   return (
-    <div className="flex flex-col justify-evenly items-center min-h-screen p-10">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-900 text-white p-10">
       <h2 className="text-4xl mb-10">
         <span className="title">Update Profile</span>
       </h2>
@@ -79,14 +76,14 @@ export default async function UpdateProfilePage() {
         <div className="w-full max-w-2xl">
           <form
             action={handleUpdateProfile}
-            className="mb-10 border p-4 rounded"
+            className="mb-10 p-6 bg-gray-800 rounded-lg shadow-lg border border-gray-700"
           >
             <div className="mb-4">
               <label className="block text-xl mb-2" htmlFor="username">
                 <span className="title">Username</span>
               </label>
               <input
-                className="w-full border p-2 rounded text-black placeholder-gray-500"
+                className="w-full border border-gray-600 p-2 rounded text-black placeholder-gray-500 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 type="text"
                 name="username"
                 placeholder="Enter a Username"
@@ -100,16 +97,17 @@ export default async function UpdateProfilePage() {
                 <span className="title">Biography</span>
               </label>
               <textarea
-                className="w-full border p-2 rounded text-black placeholder-gray-500"
+                className="w-full border border-gray-600 p-2 rounded text-black placeholder-gray-500 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 name="bio"
                 placeholder="Enter a Biography"
                 defaultValue={existingProfile.bio || ""}
+                rows={4}
               />
             </div>
 
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             >
               Update Profile
             </button>
@@ -118,13 +116,13 @@ export default async function UpdateProfilePage() {
       </SignedIn>
 
       <SignedOut>
-        <div className="w-full max-w-2xl">
-          <p className="text-center text-xl mb-4">
+        <div className="w-full max-w-2xl text-center">
+          <p className="text-xl mb-4">
             <span className="title">
               You must be signed in to update your profile.
             </span>
           </p>
-          <div className="text-center mt-4">
+          <div className="mt-4">
             <SignInButton className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors" />
           </div>
         </div>
