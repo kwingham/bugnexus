@@ -2,8 +2,11 @@ import { connect } from "@/utilities/db";
 import CommentForm from "@/components/CommentForm";
 import DeletePostButton from "@/components/DeletePost";
 import EditPostButton from "@/components/EditPost";
+import { CommentsList } from "@/components/CommentsList";
 
 export default async function SingularPostPage({params}) {
+
+    const postId = params.postId;
     
     const db = connect();
 
@@ -16,7 +19,8 @@ export default async function SingularPostPage({params}) {
             <h2>{post.title}</h2>
             <p>{post.body}</p>
             <div>
-            <CommentForm />
+            <CommentForm postId={post.id}/>
+            <CommentsList postId={post.id}/>
             </div>
             {post.clerk_id && (
                 <div>
