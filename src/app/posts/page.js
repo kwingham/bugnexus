@@ -1,4 +1,4 @@
-import News from "@/components/News";
+import News from "@/components/news";
 import Search from "@/components/Search";
 import { connect } from "@/utilities/db";
 import { auth } from "@clerk/nextjs/server";
