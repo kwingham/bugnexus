@@ -1,4 +1,5 @@
-import News from "@/components/news";
+import News from "@/components/News";
+import Search from "@/components/Search";
 import { connect } from "@/utilities/db";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
@@ -19,7 +20,7 @@ export default async function PostPage() {
             <div className="flex-1">
                 {posts.rows.map((post) => {
                     return (
-                    <div key={post.id} className="max-w-screen-lg mx-auto p-4 bg-zinc-800 mt-10 rounded-xl" >
+                    <div key={post.id} className="max-w-screen-lg mx-auto p-4  bg-gray-300 mt-10 rounded-xl" >
                     <Link href={`/posts/${post.id}`}>{post.title}</Link>
                     {/* <p>{post.body}</p> */}
                     </div> 
@@ -27,9 +28,9 @@ export default async function PostPage() {
                 })} 
                 
            </div>
-           <div className="lg:flex-col p-3 h-screen border-l hidden lg:flex w-[24rem]">
+           <div className="lg:flex-col p-3 h-screen lg:flex w-[24rem]">
                 <div className="sticky top-0 border-white p-2">
-                <input type="text" placeholder="Search" className="border border-gray-200 rounded-3xl text-sm px-4 py-2"></input>
+                <Search />
                 <News />
                 </div>
             </div>
