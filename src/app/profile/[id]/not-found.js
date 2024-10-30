@@ -11,7 +11,7 @@ export default function NotFoundPage() {
       </p>
       <Link
         href="/posts"
-        className="px-6 py-3 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors"
+        className="px-6 py-3 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors"
       >
         Return to BugNexus Posts
       </Link>

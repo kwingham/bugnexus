@@ -17,37 +17,52 @@ export default function BurgerMenu() {
     <div className="relative">
       <button
         onClick={toggleMenu}
-        className="p-2 rounded-md bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        className="p-3 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400"
         aria-label="Open navigation menu"
       >
         <MenuIcon className="w-6 h-6" />
       </button>
 
       {isOpen && (
-        <NavigationMenu className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-          <NavigationMenuList className="flex flex-col p-4 space-y-2">
+        <NavigationMenu className="absolute top-full left-[-10rem] mt-2 w-64 bg-gray-800 rounded-lg shadow-lg z-50">
+          <NavigationMenuList className="flex flex-col p-4 space-y-6">
             <NavigationMenuItem>
-              <NavigationMenuLink href="/" className="hover:underline">
+              <NavigationMenuLink
+                href="/"
+                className="block text-4xl text-white hover:text-green-400"
+              >
                 Home
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/about" className="hover:underline">
+              <NavigationMenuLink
+                href="/about"
+                className="block text-4xl text-white hover:text-green-400"
+              >
                 About
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/profile" className="hover:underline">
+              <NavigationMenuLink
+                href="/profile"
+                className="block text-4xl text-white hover:text-green-400"
+              >
                 Profile
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/posts" className="hover:underline">
+              <NavigationMenuLink
+                href="/posts"
+                className="block text-4xl text-white hover:text-green-400"
+              >
                 Posts
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="/add-post" className="hover:underline">
+              <NavigationMenuLink
+                href="/add-post"
+                className="block text-4xl text-white hover:text-green-400"
+              >
                 Add Post
               </NavigationMenuLink>
             </NavigationMenuItem>

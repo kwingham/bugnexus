@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export default function EditPostButton({ postId, initialContent }) {
-  // Function to edit post content by current user
   async function handleEdit(formData) {
     "use server";
 
@@ -12,15 +11,15 @@ export default function EditPostButton({ postId, initialContent }) {
     const db = connect();
 
     try {
-      await db.query("UPDATE posts SET body = $1 WHERE id = $2", [newContent, postId]);
-      // console.log(`${postId} updated successfully`);
+      await db.query("UPDATE posts SET body = $1 WHERE id = $2", [
+        newContent,
+        postId,
+      ]);
     } catch (error) {
       console.error(error);
     }
 
-    // Revalidate the page after editing
     revalidatePath(`/posts`);
-    // Redirect to the updated post or posts list
     redirect(`/posts/`);
   }
 
@@ -35,7 +34,7 @@ export default function EditPostButton({ postId, initialContent }) {
       />
       <button
         type="submit"
-        className="mt-2 py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+        className="mt-2 py-2 px-4 bg-green-400 text-gray-900 rounded-md hover:bg-green-500 transition"
       >
         Save Changes
       </button>
