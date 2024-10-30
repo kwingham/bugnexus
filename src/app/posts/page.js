@@ -13,7 +13,10 @@ export default async function PostPage() {
 
   return (
     <div className="flex flex-row bg-gray-900 text-white min-h-screen">
-      <div className="flex-1 p-4">
+        <div className="flex-1  p-4">
+        <Link className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center" href="/add-post">
+        Add Post
+        </Link>
         {posts.rows.map((post) => (
           <div
             key={post.id}
