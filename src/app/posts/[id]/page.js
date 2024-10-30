@@ -1,4 +1,5 @@
 import { connect } from "@/utilities/db";
+import CommentForm from "@/components/CommentForm";
 import DeletePostButton from "@/components/DeletePost";
 import EditPostButton from "@/components/EditPost";
 
@@ -12,10 +13,11 @@ export default async function SingularPostPage({params}) {
 
     return (
         <div>
-            {params.id}
-            <h1>Singular Post Page</h1>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
+            <div>
+            <CommentForm />
+            </div>
             {post.clerk_id && (
                 <div>
                   <DeletePostButton postId={post.id} />
