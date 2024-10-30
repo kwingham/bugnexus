@@ -22,9 +22,9 @@ export default async function SingularPostPage({ params }) {
         <p className="text-base sm:text-lg text-gray-300 mb-8">{post.body}</p>
 
         <div className="flex flex-col sm:flex-row space-x-0 sm:space-x-4 mt-8 mb-4">
-          <p className="mb-2 sm:mb-0">Update post information:</p>
           {post.clerk_id === userId && (
             <>
+              <p className="mb-2 sm:mb-0">Update post information:</p>
               <EditPostButton
                 postId={post.id}
                 initialContent={post.body}
@@ -38,12 +38,8 @@ export default async function SingularPostPage({ params }) {
           )}
         </div>
 
-        <div className="bg-gray-700 p-4 sm:p-6 rounded-lg shadow-lg mb-8 border border-gray-600">
-          <CommentForm />
-        </div>
-
         {post.clerk_id && (
-          <div className="bg-gray-700 p-4 sm:p-8 rounded-lg shadow-lg mt-8 border border-gray-600">
+          <div className="bg-gray-700 p-4 sm:p-8 rounded-lg shadow-lg mt-2 border border-gray-600">
             <h3 className="text-2xl sm:text-3xl font-semibold text-green-400 mb-6">
               Comments
             </h3>
