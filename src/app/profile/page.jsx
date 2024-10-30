@@ -86,7 +86,12 @@ export default async function ProfilePage() {
                 className="bg-gray-700 border border-gray-600 p-6 mb-4 rounded-lg shadow"
               >
                 <h1 className="text-2xl font-semibold text-green-400">
-                  {post.title}
+                  <Link
+                    href={`/posts/${post.id}`}
+                    className="text-2xl font-semibold text-green-400 hover:underline"
+                  >
+                    {post.title}
+                  </Link>
                 </h1>
                 <p className="text-gray-300 mt-2">{post.body}</p>
               </div>
