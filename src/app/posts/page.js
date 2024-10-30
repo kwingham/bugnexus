@@ -7,18 +7,29 @@ import Link from "next/link";
 export default async function PostPage() {
   const { userId } = auth();
   const db = connect();
-  const posts = await db.query(`SELECT * FROM posts`);
+
+  const posts = await db.query(`
+    SELECT posts.id, posts.title, posts.body, clerk_users.username 
+    FROM posts 
+    JOIN clerk_users ON posts.clerk_id = clerk_users.clerk_id
+  `);
 
   return (
-    <div className="flex flex-row bg-gray-900 text-white min-h-screen">
-        <div className="flex-1  p-4">
-        <Link className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center" href="/add-post">
-        Add Post
+    <div className="flex flex-col lg:flex-row bg-gray-900 text-white min-h-screen">
+      <div className="flex-1 p-4">
+        <Link
+          className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center mb-6"
+          href="/add-post"
+        >
+          Add Post
         </Link>
-        {posts.rows.map((post) => (
+
+        {posts.rows.map((post, index) => (
           <div
             key={post.id}
-            className="max-w-screen-lg mx-auto p-6 bg-gray-800 mt-6 rounded-lg shadow-lg"
+            className={`max-w-screen-lg mx-auto p-6 mt-6 rounded-lg shadow-lg ${
+              index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"
+            }`}
           >
             <Link
               href={`/posts/${post.id}`}
@@ -27,6 +38,9 @@ export default async function PostPage() {
               {post.title}
             </Link>
             <p className="mt-2 text-gray-300">{post.body}</p>
+            <p className="mt-2 text-sm text-gray-400">
+              Posted by {post.username}
+            </p>
           </div>
         ))}
       </div>
