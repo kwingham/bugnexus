@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export default function DeletePostButton({ postId }) {
-  //function to delete post by current user
   async function handleDelete(formData) {
     "use server";
 
@@ -11,13 +10,10 @@ export default function DeletePostButton({ postId }) {
     const db = connect();
     try {
       await db.query("DELETE FROM posts WHERE id = $1", [postId]);
-      // console.log(`${postId} deleted succesfully`}
     } catch (error) {
       console.error(error);
     }
-    // update page after deletion
     revalidatePath("/posts");
-    //redirect after deletion
     redirect("/posts");
   }
 

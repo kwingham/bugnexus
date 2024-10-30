@@ -11,22 +11,15 @@ export const metadata = {
     icon: "/favicon.ico",
   },
 };
-//maximum call stack size exceeded at resolveErrorDev to be fixed
 export default async function UpdateProfilePage() {
-  // Get user with Clerk
   const { userId } = await auth();
 
-  // Log the full auth object for debugging
-  //console.log("Auth object:", user);
-
-  // Get user profile from db
   const db = connect();
   const profile = await db.query(
     `SELECT * FROM clerk_users WHERE clerk_id = $1`,
     [userId]
   );
 
-  // Check to see if user has a profile
   const existingProfile = profile.rows[0] || {};
 
   async function handleUpdateProfile(formData) {
@@ -48,13 +41,11 @@ export default async function UpdateProfilePage() {
       );
 
       if (profiles.rowCount === 0) {
-        // If no profile, add one
         await db.query(
           `INSERT INTO clerk_users (clerk_id, username, bio) VALUES ($1, $2, $3)`,
           [userId, username, bio]
         );
       } else {
-        // If a profile exists, update it
         await db.query(
           `UPDATE clerk_users SET username = $1, bio = $2 WHERE clerk_id = $3`,
           [username, bio, userId]
@@ -67,14 +58,12 @@ export default async function UpdateProfilePage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-900 text-white p-10">
-      {/* Page Header */}
       <h2 className="text-5xl font-bold text-green-400 mb-12 text-center">
         Update Profile
       </h2>
 
       <SignedIn>
         <div className="w-full max-w-2xl bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-700">
-          {/* Update Profile Form */}
           <form action={handleUpdateProfile} className="space-y-6">
             <div>
               <label
@@ -84,7 +73,7 @@ export default async function UpdateProfilePage() {
                 Username
               </label>
               <input
-                className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 type="text"
                 name="username"
                 placeholder="Enter a Username"
@@ -101,7 +90,7 @@ export default async function UpdateProfilePage() {
                 Biography
               </label>
               <textarea
-                className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full border border-gray-600 p-3 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 name="bio"
                 placeholder="Enter a Biography"
                 defaultValue={existingProfile.bio || ""}
@@ -111,7 +100,7 @@ export default async function UpdateProfilePage() {
 
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors"
+              className="w-full px-4 py-2 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors"
             >
               Update Profile
             </button>
@@ -124,7 +113,7 @@ export default async function UpdateProfilePage() {
           <p className="text-2xl font-semibold text-green-400 mb-6">
             You must be signed in to update your profile.
           </p>
-          <SignInButton className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors" />
+          <SignInButton className="px-4 py-2 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors" />
         </div>
       </SignedOut>
     </div>

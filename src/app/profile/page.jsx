@@ -41,7 +41,7 @@ export default async function ProfilePage() {
             <div className="border border-green-400 p-6 rounded-lg bg-gray-700">
               <Link
                 href="/profile/updateProfile"
-                className="inline-block mb-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors"
+                className="inline-block mb-4 px-4 py-2 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors"
               >
                 Update Profile
               </Link>
@@ -60,7 +60,7 @@ export default async function ProfilePage() {
             <div className="border border-red-500 p-6 rounded-lg bg-gray-700">
               <Link
                 href="/profile/updateProfile"
-                className="inline-block mb-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors"
+                className="inline-block mb-4 px-4 py-2 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors"
               >
                 Update Profile
               </Link>
@@ -103,7 +103,7 @@ export default async function ProfilePage() {
           <p className="text-lg text-gray-300 mb-10">
             Please sign in to view or update your profile.
           </p>
-          <SignInButton className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors" />
+          <SignInButton className="px-4 py-2 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors" />
         </div>
       </SignedOut>
     </div>

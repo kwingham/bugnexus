@@ -20,7 +20,7 @@ export default function Home() {
         <div className="w-full max-w-3xl">
           <Link
             href="/posts"
-            className="block bg-blue-500 text-white text-center py-4 rounded text-xl font-semibold hover:bg-blue-600 transition-colors"
+            className="block bg-green-400 text-gray-900 text-center py-4 rounded text-xl font-semibold hover:bg-green-500 transition-colors"
           >
             View Posts
           </Link>

@@ -17,16 +17,12 @@ export async function CommentsList({ postId, parentCommentId = null }) {
 
   const comments = await db.query(commentQuery, commentsArgs);
 
-  console.log("this is the message we are looking for", comments);
-
-  // const comments = await db.query(`SELECT id, body, clerk_id FROM comments JOIN clerk_users ON comments.clerk_id = clerk_users.id WHERE post_id = $1 AND parent_comment_id ${parentCommentId ? `= $2` : `IS NULL`}`, [postId, parentCommentId]);
-
   return (
     <ul className="space-y-4">
       {comments.rows.map((comment) => (
         <li
           key={comment.id}
-          className="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700"
+          className="bg-gray-800 p-4 rounded-lg shadow-md border border-green-300"
         >
           <div className="mb-2">
             <span className="text-green-400 font-semibold">{comment.name}</span>
