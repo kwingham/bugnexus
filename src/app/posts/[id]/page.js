@@ -6,8 +6,9 @@ import EditPostButton from "@/components/EditPost";
 export default async function SingularPostPage({params}) {
     
     const db = connect();
+    const postParams = await params
 
-    const req = await db.query(`SELECT * FROM posts WHERE id = $1`, [params.id])
+    const req = await db.query(`SELECT * FROM posts WHERE id = $1`, [postParams.id])
     const post = await req.rows[0]
 
 
@@ -18,17 +19,17 @@ export default async function SingularPostPage({params}) {
             <div>
             <CommentForm />
             </div>
-            {post.clerk_id && (
-                <div>
-                  <DeletePostButton postId={post.id} />
-                </div>
-              )}
               <div>
                 <EditPostButton
                   postId={post.id}
-                  initialContent={post.body}
+                  initialContent={postParams.body}
                   className="text-black"
                 />
+                {post.clerk_id && (
+                <div>
+                  <DeletePostButton postId={postParams.id} />
+                </div>
+              )}
               </div>
         </div>
     )
