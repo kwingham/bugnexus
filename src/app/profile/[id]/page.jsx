@@ -17,11 +17,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ProfilePage({ params }) {
-  // console.log(params);
   const { id } = params;
-  // console.log("ID:", id);
 
-  //get the profile from the db
   let profile;
   try {
     profile = await db.query("SELECT * FROM clerk_users WHERE id = $1", [id]);
@@ -30,7 +27,6 @@ export default async function ProfilePage({ params }) {
     notFound();
   }
 
-  //if the profile cannot be found redirect to notfound page
   if (profile.rows.length === 0) {
     console.error(`${id} not found.`);
     notFound();
@@ -38,7 +34,6 @@ export default async function ProfilePage({ params }) {
 
   const userProfile = profile.rows[0];
 
-  // getting posts for specific user for the profile page
   let posts;
   try {
     posts = await db.query(`SELECT * FROM posts WHERE clerk_id = $1`, [
@@ -63,7 +58,7 @@ export default async function ProfilePage({ params }) {
           {userProfile.bio}
         </p>
       </div>
-      
+
       <div className="w-full max-w-2xl bg-gray-800 p-8 rounded-lg shadow-lg">
         <h3 className="text-3xl font-semibold text-green-400 mb-6">
           Posts by {userProfile.username}

@@ -4,19 +4,16 @@ export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-10">
       <h1 className="text-6xl font-bold text-green-400 mb-6 text-center">
-        404
+        Unknown Post
       </h1>
-      <h2 className="text-3xl font-semibold mb-4 text-center">
-        Page Not Found
-      </h2>
       <p className="text-lg text-gray-300 mb-8 text-center">
-        Sorry, the page you are looking for could not be found.
+        Sorry, the post you are looking for could not be found.
       </p>
       <Link
-        href="/"
+        href="/posts"
         className="px-6 py-3 bg-green-400 text-gray-900 font-semibold rounded hover:bg-green-500 transition-colors"
       >
-        Return to BugNexus Home
+        Return to BugNexus Post
       </Link>
     </div>
   );

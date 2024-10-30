@@ -9,7 +9,7 @@ export default async function PostPage() {
   const db = connect();
   const posts = await db.query(`SELECT * FROM posts`);
 
-  console.log(posts);
+  //   console.log(posts);
 
   return (
     <div className="flex flex-row bg-gray-900 text-white min-h-screen">
