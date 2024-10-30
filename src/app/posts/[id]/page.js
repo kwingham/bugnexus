@@ -12,34 +12,43 @@ export default async function SingularPostPage({ params }) {
   const post = req.rows[0];
 
   return (
-    <div className="max-w-screen-lg mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-md mt-10">
-      <h2 className="text-3xl font-bold mb-4 text-green-400">{post.title}</h2>
-      <p className="text-lg text-gray-300 mb-6">{post.body}</p>
+    <div className="min-h-screen bg-gray-900 text-white p-10 flex flex-col items-center">
+      <div className="w-full max-w-screen-lg bg-gray-800 p-10 rounded-lg shadow-lg mt-10">
+        <h2 className="text-5xl font-bold text-green-400 mb-6">{post.title}</h2>
+        <p className="text-lg text-gray-300 mb-8">{post.body}</p>
 
-      <div className="bg-gray-800 p-4 rounded-lg shadow-md mb-6">
-        <CommentForm />
-      </div>
-
-      {post.clerk_id && (
-        <div className="bg-gray-800 p-6 rounded-lg shadow-md mt-6">
-          <h3 className="text-2xl font-semibold mb-4">Comments</h3>
-          <CommentForm postId={post.id} />
-          <CommentsList postId={post.id} />
+        <div className="bg-gray-700 p-6 rounded-lg shadow-lg mb-8 border border-gray-600">
+          <CommentForm />
         </div>
-      )}
 
-      <div className="flex space-x-4 mt-6">
-        <EditPostButton
-          postId={post.id}
-          initialContent={post.body}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-        />
         {post.clerk_id && (
-          <DeletePostButton
-            postId={post.id}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-          />
+          <div className="bg-gray-700 p-8 rounded-lg shadow-lg mt-8 border border-gray-600">
+            <h3 className="text-3xl font-semibold text-green-400 mb-6">
+              Comments
+            </h3>
+            <div>
+              <CommentForm postId={post.id} />
+            </div>
+            <div>
+              <CommentsList postId={post.id} />
+            </div>
+          </div>
         )}
+
+        <div className="flex space-x-4 mt-8">
+          <p>Update post information</p>
+          <EditPostButton
+            postId={post.id}
+            initialContent={post.body}
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition-colors"
+          />
+          {post.clerk_id && (
+            <DeletePostButton
+              postId={post.id}
+              className="px-4 py-2 bg-red-500 text-white font-semibold rounded hover:bg-red-600 transition-colors"
+            />
+          )}
+        </div>
       </div>
     </div>
   );
