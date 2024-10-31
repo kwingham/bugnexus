@@ -58,14 +58,6 @@ export default function BurgerMenu() {
                 Posts
               </NavigationMenuLink>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="/add-post"
-                className="block text-4xl text-white hover:text-green-400"
-              >
-                Add Post
-              </NavigationMenuLink>
-            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       )}
