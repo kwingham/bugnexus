@@ -24,7 +24,7 @@ export default function EditPostButton({ postId, initialContent }) {
   }
 
   return (
-    <form action={handleEdit}>
+    <form action={handleEdit} className="mb-4">
       <input type="hidden" name="postId" value={postId} />
       <textarea
         name="content"
