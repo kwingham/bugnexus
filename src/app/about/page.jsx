@@ -4,25 +4,7 @@
 import React, { useEffect, useState } from "react";
 import Image from 'next/image'; // Import the Image component from Next.js
 
-export const metadata = {
-  title: "BugNexus | About Us",
-  description:
-    "BugNexus - the place for beginners to ask for help with their code",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
-
 function Page() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null; // or a loading spinner if you prefer
-  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col gap-8 p-10">
