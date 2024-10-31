@@ -24,42 +24,41 @@ function Page() {
       </p>
 
       {/* Main Content with Cards and Image */}
-      <div className="flex flex-col items-center">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
-          {/* Left Column (Magda and Shaun) */}
-          <div className="flex flex-col gap-8 items-center">
-            {/* Magda Card */}
-            <div className="bg-gray-800 p-8 text-center rounded-lg shadow-lg w-40 h-40 flex items-center justify-center text-green-400 font-semibold">
-              <p>Magda</p>
-            </div>
+      <div className="relative flex justify-center items-center">
+        <img
+          src="/media/frogs-catching-bugs.webp"
+          alt="Frogs catching bugs"
+          className="w-64 h-64 rounded-lg shadow-lg border border-gray-700"
+        />
 
-            {/* Shaun Card */}
-            <div className="bg-gray-800 p-8 text-center rounded-lg shadow-lg w-40 h-40 flex items-center justify-center text-green-400 font-semibold">
-              <p>Shaun</p>
-            </div>
-          </div>
+        {/* Magda Card */}
+        <div className="absolute top-0 left-40 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 text-center rounded-lg shadow-lg max-w-xs text-green-400 font-semibold">
+          <p>Magda is a passionate software developer from Poland, specializing in full-stack web development and UX/UI design.</p>
+        </div>
 
-          {/* Center Column (Frogs Image) */}
-          <div className="flex justify-center items-center">
-            <img
-              src="/media/frogs-catching-bugs.webp"
-              alt="Frogs catching bugs"
-              className="w-64 h-64 rounded-lg shadow-lg border border-gray-700"
-            />
-          </div>
+        {/* Jon Card */}
+        <div className="absolute top-0 right-40 transform translate-x-1/2 -translate-y-1/2 bg-gray-800 p-4 text-center rounded-lg shadow-lg max-w-xs text-green-400 font-semibold">
+          <p>Jon is an experienced backend developer from England, known for optimizing complex systems and mentoring new developers.</p>
+        </div>
 
-          {/* Right Column (Jon and Kyle) */}
-          <div className="flex flex-col gap-8 items-center">
-            {/* Jon Card */}
-            <div className="bg-gray-800 p-8 text-center rounded-lg shadow-lg w-40 h-40 flex items-center justify-center text-green-400 font-semibold">
-              <p>Jon</p>
-            </div>
+        {/* Shaun Card */}
+        <div className="absolute bottom-0 left-40 transform -translate-x-1/2 translate-y-1/2 bg-gray-800 p-4 text-center rounded-lg shadow-lg max-w-xs text-green-400 font-semibold">
+          <p>Shaun is a skilled developer from Zimbabwe, focusing on mobile app development and AI. He believes in the power of technology to empower and uplift.</p>
+        </div>
 
-            {/* Kyle Card */}
-            <div className="bg-gray-800 p-8 text-center rounded-lg shadow-lg w-40 h-40 flex items-center justify-center text-green-400 font-semibold">
-              <p>Kyle</p>
-            </div>
-          </div>
+        {/* Kyle Card */}
+        <div className="absolute bottom--40 right-40 transform translate-x-1/2 translate-y-1/2 bg-gray-800 p-4 text-center rounded-lg shadow-lg max-w-xs text-green-400 font-semibold">
+          <p>
+            Howzit! 👋🤓 I’m Kyle Wingham. Born in South Africa, I moved to England in 1999.
+            As an aspiring frontend developer, I thrive on collaboration and continuous learning. My passions include rugby, helping others, and all things tech-related.
+            <br /><br />
+            Connect with me:
+            <ul className="list-disc list-inside text-gray-300 mt-2">
+              <li>LinkedIn</li>
+              <li>GitHub</li>
+              <li>Twitter</li>
+            </ul>
+          </p>
         </div>
       </div>
     </div>
@@ -67,3 +66,4 @@ function Page() {
 }
 
 export default Page;
+
