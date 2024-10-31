@@ -12,7 +12,7 @@ export default async function SearchResults({ params }) {
 
     return (
         <div className="bg-[#2D2D3A] min-h-screen p-6">
-            <h1 className="text-white text-2xl font-bold mb-6">Search Results for "{query}"</h1>
+            <h1 className="text-white text-2xl font-bold mb-6">Search Results for {query}</h1>
             <ul className="space-y-6">
                 {filteredResults.length > 0 ? (
                     filteredResults.map((article, index) => (
