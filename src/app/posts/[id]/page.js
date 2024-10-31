@@ -5,14 +5,20 @@ import EditPostButton from "@/components/EditPost";
 import { CommentsList } from "@/components/CommentsList";
 import { auth } from "@clerk/nextjs/server";
 
-export const metadata = {  //need to use getMetadata to make this dynamic
-    title: "BugNexus | Post",
-    description:
-      "BugNexus - the place for beginners to ask for help with their code",
-    icons: {
-      icon: "/favicon.ico",
-    },
-  };
+export async function generateMetadata({ params }) {
+    const db = connect();
+  
+    const post = (
+      await db.query("SELECT * FROM posts WHERE id = $1", [params.id])
+    ).rows[0];
+    return {
+      title: `BugNexus | ${post.title}`,
+      description: `Page for post ${post.id}`,
+      icons: {
+        icon: "/favicon.ico",
+      },
+    };
+  }
 
 export default async function SingularPostPage({ params }) {
   const { id } = await params;

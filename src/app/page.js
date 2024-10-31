@@ -1,5 +1,14 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "BugNexus | Home",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-900 text-white">

@@ -1,15 +1,6 @@
 import { connect } from "@/utilities/db";
 import { notFound } from "next/navigation";
 
-export const metadata = {
-  title: "BugNexus | Someones Profile",
-  description:
-    "BugNexus - the place for beginners to ask for help with their code",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
-
 export async function generateMetadata({ params }) {
   const db = connect();
 
