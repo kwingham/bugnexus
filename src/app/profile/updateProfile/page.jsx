@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { connect } from "@/utilities/db";
 
 export const metadata = {
@@ -45,15 +46,21 @@ export default async function UpdateProfilePage() {
           `INSERT INTO clerk_users (clerk_id, username, bio) VALUES ($1, $2, $3)`,
           [userId, username, bio]
         );
+        revalidatePath("/profile");
+        redirect("/profile");
       } else {
         await db.query(
           `UPDATE clerk_users SET username = $1, bio = $2 WHERE clerk_id = $3`,
           [username, bio, userId]
         );
+        revalidatePath("/profile");
+        redirect("/profile");
       }
     } catch (error) {
       console.error("Error updating profile:", error);
     }
+    revalidatePath("/profile");
+    redirect("/profile");
   }
 
   return (
