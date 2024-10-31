@@ -3,6 +3,15 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 
+export const metadata = {
+  title: "BugNexus | Your Profile",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default async function ProfilePage() {
   const { userId } = await auth();
 

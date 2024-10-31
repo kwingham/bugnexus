@@ -1,5 +1,14 @@
 import React from 'react';
 
+export const metadata = {
+    title: "BugNexus | Search results",
+    description:
+      "BugNexus - the place for beginners to ask for help with their code",
+    icons: {
+      icon: "/favicon.ico",
+    },
+  };
+
 export default async function SearchResults({ params }) {
     const { query } = params;
 

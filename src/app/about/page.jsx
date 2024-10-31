@@ -4,6 +4,15 @@
 import React, { useEffect, useState } from "react";
 import Image from 'next/image'; // Import the Image component from Next.js
 
+export const metadata = {
+  title: "BugNexus | About Us",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 function Page() {
   const [isClient, setIsClient] = useState(false);
 

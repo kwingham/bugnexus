@@ -3,6 +3,15 @@ import { connect } from "@/utilities/db";
 import Link from "next/link";
 import CodeHighlighter from "@/components/CodeHighlighter";
 
+export const metadata = {
+  title: "BugNexus | Posts",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default async function PostPage() {
   const { userId } = await auth();
   const db = connect();

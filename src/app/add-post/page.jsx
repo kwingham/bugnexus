@@ -4,6 +4,15 @@ import { connect } from "@/utilities/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+  title: "BugNexus | Post an issue",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default async function addPost() {
   const { userId } = await auth();
 

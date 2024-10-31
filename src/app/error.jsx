@@ -3,6 +3,15 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
+export const metadata = {
+  title: "BugNexus | Something has gone wrong!",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default function Error({ error, reset }) {
   useEffect(() => {
     console.error(error);

@@ -5,6 +5,15 @@ import EditPostButton from "@/components/EditPost";
 import { CommentsList } from "@/components/CommentsList";
 import { auth } from "@clerk/nextjs/server";
 
+export const metadata = {  //need to use getMetadata to make this dynamic
+    title: "BugNexus | Post",
+    description:
+      "BugNexus - the place for beginners to ask for help with their code",
+    icons: {
+      icon: "/favicon.ico",
+    },
+  };
+
 export default async function SingularPostPage({ params }) {
   const { id } = await params;
   const { userId } = await auth();
