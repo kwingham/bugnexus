@@ -17,7 +17,7 @@ export default function Search() {
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Search" className="border border-gray-200 rounded-3xl text-sm px-4 py-2"></input>
+                <input type="text" placeholder="Search" value={input} onChange={(e) => setInput(e.target.value)} className="border border-gray-200 rounded-3xl text-black text-sm px-4 py-2"></input>
             </form>
         </div>
     )
