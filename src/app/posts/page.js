@@ -8,14 +8,6 @@ export default async function PostPage() {
   const { userId } = auth();
   const db = connect();
 
-  const userProfile = await db.query(
-    `SELECT username FROM clerk_users WHERE clerk_id = $1`,
-    [userId]
-  );
-
-  const hasUsername =
-    userProfile.rows.length > 0 && userProfile.rows[0].username;
-
   const posts = await db.query(`
     SELECT posts.id, posts.title, posts.body, clerk_users.username 
     FROM posts 
@@ -25,21 +17,12 @@ export default async function PostPage() {
   return (
     <div className="flex flex-col lg:flex-row bg-gray-900 text-white min-h-screen">
       <div className="flex-1 p-4">
-        {hasUsername ? (
-          <Link
-            className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center mb-6"
-            href="/add-post"
-          >
-            Add Post
-          </Link>
-        ) : (
-          <Link
-            className="flex py-3 text-lg font-semibold text-gray-900 bg-red-400 rounded-lg hover:bg-red-500 transition-colors justify-center mb-6"
-            href="/profile/updateProfile"
-          >
-            Please create a profile before posting
-          </Link>
-        )}
+        <Link
+          className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center mb-6"
+          href="/add-post"
+        >
+          Add Post
+        </Link>
 
         {posts.rows.map((post, index) => (
           <div
