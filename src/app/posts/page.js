@@ -5,26 +5,46 @@ import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 
 export default async function PostPage() {
-  const { userId } = auth();
+  const { userId } = await auth();
   const db = connect();
 
-  const posts = await db.query(`
-    SELECT posts.id, posts.title, posts.body, clerk_users.username 
-    FROM posts 
-    JOIN clerk_users ON posts.clerk_id = clerk_users.clerk_id
-  `);
+  const userResult = await db.query(
+    `SELECT id FROM clerk_users WHERE clerk_id = $1`,
+    [userId]
+  );
+
+  console.log("User Result:", userResult);
+  console.log("Row Count:", userResult.rowCount);
+
+  const userExists = userResult.rowCount > 0;
+
+  const postsResult = await db.query(
+    `SELECT posts.id, posts.title, posts.body, clerk_users.username 
+     FROM posts 
+     JOIN clerk_users ON posts.clerk_id = clerk_users.clerk_id`
+  );
+  const posts = postsResult.rows;
 
   return (
     <div className="flex flex-col lg:flex-row bg-gray-900 text-white min-h-screen">
       <div className="flex-1 p-4">
-        <Link
-          className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center mb-6"
-          href="/add-post"
-        >
-          Add Post
-        </Link>
+        {userExists ? (
+          <Link
+            className="flex py-3 text-lg font-semibold text-gray-900 bg-green-400 rounded-lg hover:bg-green-500 transition-colors justify-center mb-6"
+            href="/add-post"
+          >
+            Add Post
+          </Link>
+        ) : (
+          <Link
+            className="flex py-3 text-lg font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors justify-center mb-6"
+            href="/profile/updateProfile"
+          >
+            Please create a profile before posting
+          </Link>
+        )}
 
-        {posts.rows.map((post, index) => (
+        {posts.map((post, index) => (
           <div
             key={post.id}
             className={`max-w-screen-lg mx-auto p-6 mt-6 rounded-lg shadow-lg ${

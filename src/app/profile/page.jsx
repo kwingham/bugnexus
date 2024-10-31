@@ -2,6 +2,7 @@ import { connect } from "@/utilities/db";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+
 export default async function ProfilePage() {
   const { userId } = await auth();
 
