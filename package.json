@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm install --legacy-peer-deps",
+    "build": "next build && npm install prismjs --legacy-peer-deps",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "npm install --legacy-peer-deps"
