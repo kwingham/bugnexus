@@ -1,8 +1,7 @@
-import News from "@/components/news";
-import Search from "@/components/Search";
-import { connect } from "@/utilities/db";
 import { auth } from "@clerk/nextjs/server";
+import { connect } from "@/utilities/db";
 import Link from "next/link";
+import CodeHighlighter from "@/components/CodeHighlighter";
 
 export default async function PostPage() {
   const { userId } = await auth();
@@ -12,9 +11,6 @@ export default async function PostPage() {
     `SELECT id FROM clerk_users WHERE clerk_id = $1`,
     [userId]
   );
-
-  console.log("User Result:", userResult);
-  console.log("Row Count:", userResult.rowCount);
 
   const userExists = userResult.rowCount > 0;
 
@@ -57,23 +53,14 @@ export default async function PostPage() {
             >
               {post.title}
             </Link>
-            <p className="mt-2 text-gray-300">{post.body}</p>
+            <div className="mt-4">
+              <CodeHighlighter language="javascript" code={post.body} />
+            </div>
             <p className="mt-2 text-sm text-gray-400">
               Posted by {post.username}
             </p>
           </div>
         ))}
-      </div>
-
-      <div className="hidden lg:flex lg:flex-col w-80 p-4 h-screen bg-gray-800 border-l border-gray-700">
-        <div className="sticky top-0 space-y-6">
-          <div className="bg-gray-700 p-4 rounded-lg shadow-md">
-            <Search />
-          </div>
-          <div className="bg-gray-700 p-4 rounded-lg shadow-md">
-            <News />
-          </div>
-        </div>
       </div>
     </div>
   );
