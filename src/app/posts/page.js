@@ -2,6 +2,8 @@ import { auth } from "@clerk/nextjs/server";
 import { connect } from "@/utilities/db";
 import Link from "next/link";
 import CodeHighlighter from "@/components/CodeHighlighter";
+import Search from "@/components/Search";
+import News from "@/components/news";
 
 export const metadata = {
   title: "BugNexus | Posts",
@@ -71,6 +73,18 @@ export default async function PostPage() {
           </div>
         ))}
       </div>
+
+      <div className="hidden lg:flex lg:flex-col w-80 p-4 h-screen bg-gray-800 border-l border-gray-700">
+        <div className="sticky top-0 space-y-6">
+          <div className="bg-gray-700 p-4 rounded-lg shadow-md">
+            <Search />
+          </div>
+          <div className="bg-gray-700 p-4 rounded-lg shadow-md">
+            <News />
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
