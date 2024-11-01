@@ -1,5 +1,14 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "BugNexus | Oops!!",
+  description:
+    "BugNexus - the place for beginners to ask for help with their code",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-10">
