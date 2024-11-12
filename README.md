@@ -12,7 +12,7 @@ Conditional User Experience: Tailored interactions based on user status:
 - No profile yet? We’ll guide you in creating one before posting.
 - Logged-in users can view their posts and edit or delete their content.
 
-Tech Stack: We used Prism.js for syntax highlighting (although it was not fully implemented due to time constraints), shadcn for a responsive menu, and Clerk for authentication.
+Tech Stack: We used Prism.js for syntax highlighting (although it was not fully implemented due to time constraints), shadcn for an Accessibility-First Design, and a responsive menu, and lastly Clerk for authentication.
 
 ### Future Enhancements:
 
